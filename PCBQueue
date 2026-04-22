@@ -1,0 +1,55 @@
+public class PCBQueue implements QueueInterface {
+    private PCB front;
+    private PCB rear;
+
+    public PCBQueue() {
+        front = null;
+        rear = null;
+    }
+
+    @Override
+    public void enqueue(int pid) {
+        PCB newPCB = new PCB(pid);
+
+        if(isEmpty()) {
+            front = rear = newPCB;
+        } else{
+            rear.setNext(newPCB);
+            rear = newPCB;
+        }
+    }
+
+    @Override
+    public PCB dequeue() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        PCB temp = front;
+        front = front.getNext();
+
+        if (front == null) {
+            rear = null;
+        }
+        return temp;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return front == null;
+    }
+
+    @Override
+    public void display() {
+        PCB current = front;
+
+        while (current != null) {
+            System.out.print(current.getPid());
+            if (current.getNext() != null) {
+                System.out.print(", ");
+            }
+            current = current.getNext();
+        }
+        System.out.println();
+    }
+}
