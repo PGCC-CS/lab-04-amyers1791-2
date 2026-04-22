@@ -1,0 +1,22 @@
+public class PCB {
+
+    private int pid;
+    private PCB next;
+
+    public PCB(int pid) {
+        this.pid = pid;
+        this.next = null;
+    }
+
+    public int getPid(){
+        return pid;
+    }
+
+    public PCB getNext() {
+        return next;
+    }
+
+    public void setNext(PCB next) {
+        this.next = next;
+    }
+}
